@@ -4,6 +4,19 @@ pipeline {
         maven 'Maven' 
     }
     stages {
+   	stage('SonarQube Analysis'){
+        	steps {
+                	withSonarQubeEnv('Sonarqube') {
+                    		script {
+					container_Up = false
+		    			LAST_STARTED = env.STAGE_NAME 
+					sh "mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=Jerry123 -Dsonar.sources=src/"   
+                    		}
+                	}
+                }
+	}
+	    
+	    
        stage('Build') {
       		steps {
 	    		script {
