@@ -6,7 +6,7 @@ pipeline {
     stages {
    	stage('SonarQube Analysis'){
         	steps {
-                	withSonarQubeEnv('Sonarqube') {
+                	withSonarQubeEnv('SonarQube') {
                     		script {
 					container_Up = false
 		    			LAST_STARTED = env.STAGE_NAME 
