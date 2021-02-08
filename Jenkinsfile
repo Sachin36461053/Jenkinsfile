@@ -25,6 +25,20 @@ pipeline {
 		    } 
         }    
      } 
+	    
+     stage('Build image') {
+      		steps {
+        		script {
+			//      sh "docker stop apiops-salesforce-sapi" 
+        		//   	sh "docker rm apiops-salesforce-sapi"
+			   	LAST_STARTED = env.STAGE_NAME
+				container_Up = false
+			   	sh "docker build -t jenkins-test:mule -f Dockerfile ."
+                	 
+                        }
+               }
+      }
+	    
      stage ('Munit Test'){
         	steps {
 			script {
