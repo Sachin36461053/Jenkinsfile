@@ -39,6 +39,18 @@ pipeline {
                }
       }
 	    
+      stage('Run container') {
+      		steps {
+        		script {
+			     	LAST_STARTED = env.STAGE_NAME
+				
+          		    	sh ' docker run -itd -p 8095:8081 --name jenkins-test jenkins-test:mule'
+				container_Up = true
+				sh 'sleep 90'
+       			}
+		}
+     }
+	    
      stage ('Munit Test'){
         	steps {
 			script {
