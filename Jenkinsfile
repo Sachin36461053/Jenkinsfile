@@ -33,7 +33,7 @@ pipeline {
         		//   	sh "docker rm apiops-salesforce-sapi"
 			   	LAST_STARTED = env.STAGE_NAME
 				container_Up = false
-			   	sh "docker build -t jenkins-test:mule -f Dockerfile"
+			   	sh "docker build -t jenkins-test:mule -f Dockerfile ."
                 	 
                         }
                }
