@@ -70,9 +70,6 @@ pipeline {
 
 				sh "mvn -f /Users/sachinsajan/AnypointStudio/myTrains/jenkins-test/src/test/java/runner/TestRunner.java test "
 
-			
-			}
-
 			}
 
              	}   
