@@ -59,6 +59,28 @@ pipeline {
 			}		
         }    
      }
+	    
+	          stage('Munit & Functional Testing'){
+        	steps {
+			script {
+
+				LAST_STARTED = env.STAGE_NAME
+
+				//sh "mvn -f apiops-generic-db-sapi/pom.xml -Dhttp.port=8086 -Dkey=mymulesoft test -Dtestfile=apiops-generic-db-sapi/src/test/javarunner.TestRunner.java "
+
+				sh "mvn -f /Users/sachinsajan/AnypointStudio/myTrains/jenkins-test/src/test/java/runner/TestRunner.java test "
+
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'apiops-generic-db-sapi/target/site/munit/coverage', reportFiles: 'summary.html', reportName: 'Munit coverage Report', reportTitles: ''])
+
+				cucumber(failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: 'cucumber.json', jsonReportDirectory: 'apiops-generic-db-sapi/target', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1)
+
+			}
+
+			}
+
+             	}   
+
+     }
   
     stage('Deploy to Cloudhub'){
         	steps {
