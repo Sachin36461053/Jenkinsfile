@@ -68,7 +68,7 @@ pipeline {
 
 				//sh "mvn -f apiops-generic-db-sapi/pom.xml -Dhttp.port=8086 -Dkey=mymulesoft test -Dtestfile=apiops-generic-db-sapi/src/test/javarunner.TestRunner.java "
 
-				sh "mvn -Dtestfile=/Users/sachinsajan/AnypointStudio/myTrains/jenkins-test/src/test/java/runner/TestRunner.java test "
+				sh "mvn -Dtestfile=/src/test/java/runner/TestRunner.java test "
 
 			}
 
