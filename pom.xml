@@ -20,6 +20,61 @@
 
 	<build>
 		<plugins>
+			        <plugin>
+ <artifactId>maven-war-plugin</artifactId>
+ <version>2.2</version>
+ <configuration>
+ <!-- <source>1.7</source>
+  <target>1.7</target>-->
+  <failOnMissingWebXml>false</failOnMissingWebXml>
+ </configuration>
+</plugin>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <configuration>
+    <source>1.8</source>
+    <target>1.8</target>
+    </configuration>
+        </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+    <excludes>
+      <exclude>testing.TestRunner.java</exclude>
+    </excludes>
+  </configuration>
+				  <!-- <configuration>
+					<forkCount>1</forkCount>
+					<includes>
+						<include>testing.TestRunner.java</include>
+					</includes>
+				</configuration>-->
+			</plugin>
+            <plugin>
+            <!-- to run directly: mvn failsafe:integration-test -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.19.1</version>
+            <configuration>
+                <includes>
+                            <include>testing.TestRunner.java</include>
+                        </includes>
+            </configuration>
+            <!-- execution below can be used, if tests are needed on 
+                mvn:integration-test -->
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
